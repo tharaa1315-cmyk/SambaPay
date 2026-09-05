@@ -1,0 +1,38 @@
+.samba-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-12) var(--spacing-6);
+}
+
+.samba-empty-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-400);
+  margin-bottom: var(--spacing-4);
+}
+
+.samba-empty-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin-bottom: var(--spacing-2);
+}
+
+.samba-empty-description {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-500);
+  max-width: 24rem;
+  margin-bottom: var(--spacing-6);
+}
+
+.samba-empty-action {
+  margin-top: var(--spacing-2);
+}

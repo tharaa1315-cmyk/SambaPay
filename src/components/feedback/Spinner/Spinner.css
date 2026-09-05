@@ -1,0 +1,55 @@
+.samba-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary-600);
+}
+
+.samba-spinner--sm {
+  width: 1rem;
+  height: 1rem;
+}
+
+.samba-spinner--md {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.samba-spinner--lg {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.samba-spinner-svg {
+  width: 100%;
+  height: 100%;
+  animation: spinner-rotate 2s linear infinite;
+}
+
+.samba-spinner-circle {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: spinner-dash 1.5s ease-in-out infinite;
+}
+
+@keyframes spinner-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -124px;
+  }
+}

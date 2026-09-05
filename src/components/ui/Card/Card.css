@@ -1,0 +1,34 @@
+.samba-card {
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.samba-card:hover {
+  border-color: #cfe4df;
+  box-shadow: var(--shadow-md);
+}
+
+.samba-card-header {
+  padding: var(--spacing-4) var(--spacing-5);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.samba-card-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-gray-900);
+  letter-spacing: -0.02em;
+}
+
+.samba-card-content {
+  padding: var(--spacing-5);
+}
+
+.samba-card-footer {
+  padding: var(--spacing-4) var(--spacing-5);
+  border-top: 1px solid var(--border-color);
+  background-color: var(--color-gray-50);
+}

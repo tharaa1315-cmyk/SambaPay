@@ -1,0 +1,64 @@
+.samba-table-container {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-surface);
+}
+
+.samba-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: var(--font-size-sm);
+}
+
+.samba-table th {
+  padding: var(--spacing-3) var(--spacing-4);
+  background-color: #f0f7f4;
+  color: var(--color-gray-600);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.samba-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.samba-table th.sortable:hover {
+  background-color: var(--color-gray-100);
+}
+
+.th-content {
+  display: flex;
+  align-items: center;
+}
+
+.sort-icon {
+  margin-left: var(--spacing-1);
+  display: flex;
+  align-items: center;
+}
+
+.samba-table td {
+  padding: var(--spacing-4);
+  border-bottom: 1px solid var(--border-color);
+  color: var(--color-gray-900);
+  vertical-align: middle;
+}
+
+.samba-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.samba-table tbody tr:hover {
+  background-color: #f6fbf9;
+}
+
+.samba-table-empty {
+  text-align: center;
+  padding: var(--spacing-8) !important;
+  color: var(--color-gray-500) !important;
+}

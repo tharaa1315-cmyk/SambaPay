@@ -1,0 +1,36 @@
+.samba-tabs-container {
+  width: 100%;
+}
+
+.samba-tabs-list {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: var(--spacing-6);
+  overflow-x: auto;
+}
+
+.samba-tab-button {
+  padding: var(--spacing-3) var(--spacing-4);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-gray-500);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.samba-tab-button:hover {
+  color: var(--color-gray-700);
+}
+
+.samba-tab-button.active {
+  color: var(--color-primary-600);
+  border-bottom-color: var(--color-primary-600);
+}
+
+.samba-tabs-content {
+  width: 100%;
+}

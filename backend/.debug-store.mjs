@@ -1,0 +1,12 @@
+﻿import { installInMemoryStore, getStore } from './services/inMemoryStore.js';
+installInMemoryStore();
+const store = getStore();
+const emp = store.collections.Employee[0];
+console.log('emp _id:', String(emp._id));
+import Employee from './models/Employee.js';
+const one = await Employee.find({ _id: String(emp._id) });
+console.log('find exact count:', one.length);
+const two = await Employee.find({ _id: { $in: [String(emp._id)] } });
+console.log('find in count:', two.length);
+const three = await Employee.find({ _id: { $in: [emp._id] } });
+console.log('find in ObjectId count:', three.length);

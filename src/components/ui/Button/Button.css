@@ -1,0 +1,119 @@
+.samba-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-base);
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.samba-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Sizes */
+.samba-btn--sm {
+  padding: var(--spacing-1) var(--spacing-2);
+  font-size: var(--font-size-xs);
+}
+
+.samba-btn--md {
+  padding: var(--spacing-2) var(--spacing-4);
+  font-size: var(--font-size-sm);
+}
+
+.samba-btn--lg {
+  padding: var(--spacing-3) var(--spacing-6);
+  font-size: var(--font-size-base);
+}
+
+/* Variants */
+.samba-btn--primary {
+  background-color: var(--color-primary-600);
+  color: white;
+}
+.samba-btn--primary:hover:not(:disabled) {
+  background-color: var(--color-primary-700);
+  box-shadow: 0 8px 18px rgb(13 130 118 / 0.2);
+  transform: translateY(-1px);
+}
+
+.samba-btn--secondary {
+  background-color: white;
+  color: var(--color-gray-700);
+  border-color: var(--color-gray-300);
+}
+.samba-btn--secondary:hover:not(:disabled) {
+  background-color: var(--color-primary-50);
+  border-color: var(--color-primary-100);
+  color: var(--color-primary-700);
+  transform: translateY(-1px);
+}
+
+.samba-btn--danger {
+  background-color: var(--color-error-600);
+  color: white;
+}
+.samba-btn--danger:hover:not(:disabled) {
+  background-color: var(--color-error-700);
+}
+
+.samba-btn--ghost {
+  background-color: transparent;
+  color: var(--color-gray-600);
+}
+.samba-btn--ghost:hover:not(:disabled) {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-900);
+}
+
+/* Loading state */
+.samba-btn--loading .samba-btn__content {
+  visibility: hidden;
+}
+.samba-btn__spinner {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-icon {
+  width: 1.25em;
+  height: 1.25em;
+  animation: rotate 2s linear infinite;
+}
+
+.spinner-path {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -124px;
+  }
+}
