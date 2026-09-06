@@ -1,0 +1,71 @@
+.samba-select-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-4);
+  width: 100%;
+}
+
+.samba-select-label {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-gray-700);
+  margin-bottom: var(--spacing-1);
+}
+
+.samba-select-container {
+  position: relative;
+  width: 100%;
+}
+
+.samba-select {
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family-base);
+  color: var(--color-gray-900);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-md);
+  appearance: none;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.samba-select-container::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--color-gray-500);
+  pointer-events: none;
+}
+
+.samba-select:focus {
+  outline: none;
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 3px var(--color-primary-100);
+}
+
+.samba-select:disabled {
+  background-color: var(--color-gray-50);
+  color: var(--color-gray-500);
+  cursor: not-allowed;
+}
+
+.samba-select--error {
+  border-color: var(--color-error-500);
+}
+
+.samba-select-helper {
+  font-size: var(--font-size-xs);
+  margin-top: var(--spacing-1);
+  color: var(--color-gray-500);
+}
+
+.samba-select-helper--error {
+  color: var(--color-error-500);
+}
