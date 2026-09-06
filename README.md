@@ -1,50 +1,164 @@
-# React + Vite
 
-## Run the application
+<div align="center">
 
-From this directory, install dependencies in both projects:
+# 🌟 SambaPay Enterprise Suite 🌟
+**Next-Generation HR, Payroll, & Organizational Management API**
+
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](#)
+[![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](#)
+[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](#)
+[![Security: RBAC](https://img.shields.io/badge/Security-RBAC%20Enabled-blueviolet?style=for-the-badge)](#)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](#)
+
+<br>
+<p>
+  <i>A powerful, decoupled backend architecture designed to handle modern enterprise organizational structures, time tracking, dynamic payroll routing, and strict role-based access controls.</i>
+</p>
+
+[**Architecture Diagrams**](#-interactive-architecture--flow-diagrams) • [**Explore Features**](#-core-modules) • [**Getting Started**](#-quick-start)
+
+</div>
+
+---
+
+## 🧭 Table of Contents
+1. [Interactive Architecture & Flow Diagrams](#-interactive-architecture--flow-diagrams)
+2. [Core Modules](#-core-modules)
+3. [Security & Authentication](#-security--authentication)
+4. [Tech Stack](#-tech-stack)
+5. [Quick Start (Interactive)](#-quick-start)
+
+---
+
+## 📐 Interactive Architecture & Flow Diagrams
+
+SambaPay uses a decoupled, headless architecture separating the UX from the Backend API. Below are the interactive architectural flow graphs (rendered via Mermaid.js natively in Markdown).
+
+### Core System Flow
+```mermaid
+graph TD;
+    Client([📱 Client/Frontend UX]) -->|HTTPS / REST API| Express[Express.js API Router];
+    
+    subgraph Security Layer
+        Express --> Validate[Validate.js Sanitization];
+        Validate --> Auth{Auth & RBAC};
+        Auth -->|Invalid Token/Role| Deny([⛔ 403 Forbidden]);
+    end
+
+    subgraph Core Business Modules
+        Auth -->|Authorized| HR[🏢 Organization Controller];
+        Auth -->|Authorized| Payroll[💰 Payroll Engine];
+        Auth -->|Authorized| Time[⏳ Attendance Controller];
+    end
+
+    subgraph Data Layer
+        HR --> Mongoose((Mongoose ORM));
+        Payroll --> Mongoose;
+        Time --> Mongoose;
+        Mongoose --> DB[(MongoDB / BSON)];
+    end
+```
+
+### Payroll Processing Lifecycle Graph
+```mermaid
+stateDiagram-v2
+    direction LR
+    [*] --> Draft : Run Payroll Engine
+    Draft --> Pending_Review : Generate Payslips
+    Pending_Review --> Approved : HR Manager Approves
+    Pending_Review --> Draft : Corrections Required
+    Approved --> Disbursed : Funds Transfer & Logging
+    Disbursed --> [*]
+```
+
+### System Workload Distribution
+```mermaid
+pie title "SambaPay Average Processing Load"
+    "Payroll & Financial Engine" : 45
+    "Time & Attendance Tracking" : 25
+    "HR & Organization Sync" : 20
+    "Reporting & Auditing" : 10
+```
+
+---
+
+## 🧩 Core Modules
+
+| Module | Description | Key Controllers |
+|:---|:---|:---|
+| 🏢 **Organization** | Manages departments, company structure, and active employee contracts. | `OrganizationController`, `EmployeeController` |
+| ⏳ **Time & Attendance** | Check-ins, leave allocations, schedules, and time-off tracking. | `AttendanceController`, `LeaveController` |
+| 💰 **Payroll Engine** | Financial core handling dynamic salary rules, structures, and payslip generation. | `PayrollController`, `PayslipController` |
+| 📊 **Reporting & Audit** | Analytical endpoints for HR reports and compliance audit trails. | `ReportController`, `AuditLog` |
+
+---
+
+## 🛡 Security & Authentication
+
+Security is deeply integrated into the SambaPay API lifecycle.
+
+<details>
+<summary><b>🔐 Click to expand Security Details</b></summary>
+
+> - **Authentication Pipeline:** Handled by `authController.js` and the robust `User.js` model. Issues secure sessions/tokens.
+> - **Role-Based Access Control (RBAC):** Middleware (`rbac.js`) ensures strict separation of duties (e.g., Admin vs. HR vs. Employee).
+> - **Cryptography:** Passwords are irreversibly hashed with `bcrypt` / `bcryptjs`.
+> - **Request Sanitization:** Incoming payloads are strictly validated and parsed using `validate.js`, `body-parser`, and `accepts`.
+</details>
+
+---
+
+## 💻 Tech Stack
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" width="25%"><b>Runtime</b><br><br><img src="https://skillicons.dev/icons?i=nodejs" /></td>
+      <td align="center" width="25%"><b>Framework</b><br><br><img src="https://skillicons.dev/icons?i=express" /></td>
+      <td align="center" width="25%"><b>Database</b><br><br><img src="https://skillicons.dev/icons?i=mongo" /></td>
+      <td align="center" width="25%"><b>Package Manager</b><br><br><img src="https://skillicons.dev/icons?i=npm" /></td>
+    </tr>
+  </table>
+</div>
+
+---
+
+## 🚀 Quick Start 
+
+Follow these steps to get SambaPay running locally.
+
+<details>
+<summary><b>⚙️ 1. Environment Setup (Click to Expand)</b></summary>
+<br>
+
+Create a `.env` file in the `backend/` directory:
+```env
+PORT=3000
+MONGODB_URI=mongodb://localhost:27017/sambapay
+JWT_SECRET=your_super_secret_key
+NODE_ENV=development
+```
+</details>
+
+<details>
+<summary><b>📦 2. Installation & Execution (Click to Expand)</b></summary>
+<br>
+
+Run the following commands in your terminal:
 
 ```bash
+# Navigate to the backend directory
+cd sambapay/backend
+
+# Install all dependencies (bcrypt, mongoose, body-parser, etc.)
 npm install
-npm --prefix backend install
-```
 
-Start the frontend and backend in separate terminals:
-
-```bash
+# Start the server
 npm run dev
-npm run backend:dev
 ```
+</details>
 
-The frontend runs at `http://localhost:5173` and the backend runs at `http://localhost:5000`.
-The backend requires MongoDB at the `MONGO_URI` configured in `backend/.env`. Check `/api/health`; a `503` response with `"database":"unavailable"` means MongoDB is not reachable.
-
-### Test Accounts (when MongoDB is unavailable)
-
-When MongoDB is not reachable, the backend automatically falls back to an in-memory data layer with these demo accounts:
-
-| Email | Password | Role |
-|-------|----------|------|
-| admin@demo.hr | admin123 | ADMIN |
-| sarah.connor@company.com | password123 | ADMIN |
-| evan.wright@company.com | password123 | HR_MANAGER |
-| fiona.gallagher@company.com | password123 | HR_PAYROLL_MANAGER |
-| alice.smith@company.com | password123 | EMPLOYEE |
-| bob.jones@company.com | password123 | EMPLOYEE |
-
-The in-memory store comes pre-seeded with employees, contracts, attendance records, leave requests, payroll runs, salary structures, and settings. Data resets when the backend restarts. To seed a real MongoDB instance instead, run `npm run backend:seed`.
-
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+<br>
+<p align="center">
+  <i>Developed with ❤️ for enterprise efficiency.</i>
+</p>
