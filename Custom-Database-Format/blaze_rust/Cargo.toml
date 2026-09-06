@@ -1,0 +1,12 @@
+[package]
+name = "blaze_rust"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "blaze_rust"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.20", features = ["extension-module"] }
+byteorder = "1.5.0"
